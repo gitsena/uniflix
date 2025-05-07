@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model tbl_classificacao {
+  id        Int         @id @default(autoincrement())
+  sigla     String
+  nome      String
+  descricao String
+  filmes    tbl_filme[]
+}
+
+model tbl_genero {
+  id     Int                @id @default(autoincrement())
+  nome   String
+  filmes tbl_filme_genero[]
+}
+
+model tbl_filme_genero {
+  id        Int        @id @default(autoincrement())
+  id_filme  Int
+  id_genero Int
+  filme     tbl_filme  @relation(fields: [id_filme], references: [id])
+  genero    tbl_genero @relation(fields: [id_genero], references: [id])
+}
+
+model tbl_filme {
+  id                Int                 @id @default(autoincrement())
+  nome              String
+  nome_original     String
+  data_lancamento   DateTime
+  data_relancamento DateTime?
+  duracao           String
+  sinopse           String
+  foto_capa         String
+  id_classificacao  Int
+  classificacao     tbl_classificacao   @relation(fields: [id_classificacao], references: [id])
+  generos           tbl_filme_genero[]
+  diretores         tbl_filme_diretor[]
+  atores            tbl_filme_ator[]
+}
+
+model tbl_diretor {
+  id               Int                         @id @default(autoincrement())
+  nome             String
+  nome_artistico   String
+  data_nascimento  DateTime
+  data_falecimento DateTime?
+  biografia        String
+  foto             String
+  id_sexo          Int
+  sexo             tbl_sexo                    @relation(fields: [id_sexo], references: [id])
+  nacionalidades   tbl_diretor_nacionalidade[]
+  filmes           tbl_filme_diretor[]
+}
+
+model tbl_filme_diretor {
+  id         Int         @id @default(autoincrement())
+  id_filme   Int
+  id_diretor Int
+  filme      tbl_filme   @relation(fields: [id_filme], references: [id])
+  diretor    tbl_diretor @relation(fields: [id_diretor], references: [id])
+}
+
+model tbl_ator {
+  id               Int                      @id @default(autoincrement())
+  nome             String
+  nome_artistico   String
+  data_nascimento  DateTime
+  data_falecimento DateTime?
+  biografia        String
+  foto             String
+  id_sexo          Int
+  sexo             tbl_sexo                 @relation(fields: [id_sexo], references: [id])
+  nacionalidades   tbl_ator_nacionalidade[]
+  filmes           tbl_filme_ator[]
+}
+
+model tbl_filme_ator {
+  id       Int       @id @default(autoincrement())
+  id_filme Int
+  id_ator  Int
+  filme    tbl_filme @relation(fields: [id_filme], references: [id])
+  ator     tbl_ator  @relation(fields: [id_ator], references: [id])
+}
+
+model tbl_nacionalidade {
+  id        Int                         @id @default(autoincrement())
+  nome      String
+  diretores tbl_diretor_nacionalidade[]
+  atores    tbl_ator_nacionalidade[]
+}
+
+model tbl_diretor_nacionalidade {
+  id               Int               @id @default(autoincrement())
+  id_diretor       Int
+  id_nacionalidade Int
+  diretor          tbl_diretor       @relation(fields: [id_diretor], references: [id])
+  nacionalidade    tbl_nacionalidade @relation(fields: [id_nacionalidade], references: [id])
+}
+
+model tbl_ator_nacionalidade {
+  id               Int               @id @default(autoincrement())
+  id_ator          Int
+  id_nacionalidade Int
+  ator             tbl_ator          @relation(fields: [id_ator], references: [id])
+  nacionalidade    tbl_nacionalidade @relation(fields: [id_nacionalidade], references: [id])
+}
+
+model tbl_sexo {
+  id        Int           @id @default(autoincrement())
+  sigla     String
+  nome      String
+  diretores tbl_diretor[]
+  atores    tbl_ator[]
+}
