@@ -1,0 +1,61 @@
+
+INSERT INTO tbl_sexo (sigla, nome) VALUES 
+('M', 'Masculino'),
+('F', 'Feminino');
+
+INSERT INTO tbl_nacionalidade (nome) VALUES 
+('Brasileira'),
+('Americana');
+
+INSERT INTO tbl_classificacao (sigla, nome, descricao) VALUES 
+('L', 'Livre', 'Para todos os públicos'),
+('16', '16 anos', 'Não recomendado para menores de 16 anos');
+
+INSERT INTO tbl_genero (nome) VALUES 
+('Ação'),
+('Drama');
+
+INSERT INTO tbl_diretor (
+  nome, nome_artistico, data_nascimento, data_falecimento, biografia, foto, id_sexo
+) VALUES 
+('João Silva', 'J. Silva', '1970-01-01', NULL, 'Diretor renomado.', 'joao.jpg', 1);
+
+INSERT INTO tbl_diretor_nacionalidade (id_diretor, id_nacionalidade) VALUES 
+(1, 1);
+
+INSERT INTO tbl_ator (
+  nome, nome_artistico, data_nascimento, data_falecimento, biografia, foto, id_sexo
+) VALUES 
+('Maria Souza', 'M. Souza', '1985-05-10', NULL, 'Atriz premiada.', 'maria.jpg', 2);
+
+INSERT INTO tbl_ator_nacionalidade (id_ator, id_nacionalidade) VALUES 
+(1, 2);
+
+INSERT INTO tbl_filme (
+  nome, nome_original, data_lancamento, data_relancamento, duracao, sinopse, foto_capa, id_classificacao
+) VALUES 
+('O Grande Filme', 'The Big Movie', '2023-01-01', NULL, '120min', 'Um grande filme.', 'capa.jpg', 1);
+
+INSERT INTO tbl_filme_diretor (id_filme, id_diretor) VALUES 
+(1, 1);
+
+INSERT INTO tbl_filme_ator (id_filme, id_ator) VALUES 
+(1, 1);
+
+
+INSERT INTO tbl_filme_genero (id_filme, id_genero) VALUES 
+(1, 1),
+(1, 2);
+
+
+
+
+
+agora quero avançar para o front end a ideia é que seja "one page" com modais para executar os CRUD , integrando com o backend que foi desenvolvido aqui, com uma interface bem agradavel moderna e funcional respeitando as boas praticas de UX e UI, me retorna a estrutura e os codigos para desenvolver o front end utilzando javascript e tailwind css
+
+
+
+
+
+
+
