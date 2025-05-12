@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNIFLIX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" defer src="./js/main.js"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+    <header class="p-4 bg-gray-800 text-white text-center text-2xl font-bold">
+    🎬 UNIFLIX
+    </header>
+
+    <main class="p-4 max-w-7xl mx-auto space-y-6">
+      <!-- Filtros -->
+      <section id="filters" class="space-y-4"></section>
+
+      <!-- Botão de adicionar novo -->
+      <div class="flex justify-end">
+        <button id="btnAddFilme" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Adicionar Filme</button>
+      </div>
+
+      <!-- Listagem -->
+      <section id="filmeList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+    </main>
+
+    <!-- Modais serão injetados aqui -->
+    <div id="modalRoot"></div>
+  </body>
+</html>

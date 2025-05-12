@@ -51,7 +51,6 @@ INSERT INTO tbl_filme_genero (id_filme, id_genero) VALUES
 
 
 
-agora quero avançar para o front end a ideia é que seja "one page" com modais para executar os CRUD , integrando com o backend que foi desenvolvido aqui, com uma interface bem agradavel moderna e funcional respeitando as boas praticas de UX e UI, me retorna a estrutura e os codigos para desenvolver o front end utilzando javascript e tailwind css
 
 
 
