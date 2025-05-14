@@ -24,10 +24,16 @@ export async function updateFilme(id, data) {
   return res.json();
 }
 
+export async function deleteFilme(id) {
+  const res = await fetch(`${API_URL}/filmes/${id}`, {
+    method: 'DELETE',
+  });
+  return res.ok;
+}
+
 export async function getClassificacoes() {
   const res = await fetch(`${API_URL}/classificacoes`);
   return res.json();
 }
 
 
-// Demais funções para editar, deletar, etc.

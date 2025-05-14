@@ -44,7 +44,7 @@ model tbl_filme {
   data_relancamento DateTime?
   duracao           String
   sinopse           String
-  foto_capa         String
+  foto_capa         String?
   id_classificacao  Int
   classificacao     tbl_classificacao   @relation(fields: [id_classificacao], references: [id])
   generos           tbl_filme_genero[]

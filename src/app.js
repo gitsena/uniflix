@@ -7,6 +7,7 @@ const app = express();
 
 app.use(cors()); // Habilita CORS para todas as origens
 app.use(express.json());
+app.use('/assets', express.static('public/assets'));
 app.use('/filmes', filmeRoutes);
 app.use('/classificacoes', classificacaoRoutes);
 

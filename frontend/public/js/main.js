@@ -1,6 +1,6 @@
 import { renderFilmes } from './ui.js';
 import { setupFilters } from './filters.js';
-import { openFilmeModal } from './modals/filmeModal.js';
+import { openFilmeModal } from './components/filmeModal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   setupFilters();

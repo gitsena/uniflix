@@ -5579,7 +5579,7 @@ export namespace Prisma {
     data_relancamento: Date | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa: string | null
     id_classificacao: number
     _count: Tbl_filmeCountAggregateOutputType | null
     _avg: Tbl_filmeAvgAggregateOutputType | null
@@ -5688,7 +5688,7 @@ export namespace Prisma {
       data_relancamento: Date | null
       duracao: string
       sinopse: string
-      foto_capa: string
+      foto_capa: string | null
       id_classificacao: number
     }, ExtArgs["result"]["tbl_filme"]>
     composites: {}
@@ -15905,7 +15905,7 @@ export namespace Prisma {
     data_relancamento?: DateTimeNullableFilter<"tbl_filme"> | Date | string | null
     duracao?: StringFilter<"tbl_filme"> | string
     sinopse?: StringFilter<"tbl_filme"> | string
-    foto_capa?: StringFilter<"tbl_filme"> | string
+    foto_capa?: StringNullableFilter<"tbl_filme"> | string | null
     id_classificacao?: IntFilter<"tbl_filme"> | number
     classificacao?: XOR<Tbl_classificacaoScalarRelationFilter, tbl_classificacaoWhereInput>
     generos?: Tbl_filme_generoListRelationFilter
@@ -15921,7 +15921,7 @@ export namespace Prisma {
     data_relancamento?: SortOrderInput | SortOrder
     duracao?: SortOrder
     sinopse?: SortOrder
-    foto_capa?: SortOrder
+    foto_capa?: SortOrderInput | SortOrder
     id_classificacao?: SortOrder
     classificacao?: tbl_classificacaoOrderByWithRelationInput
     generos?: tbl_filme_generoOrderByRelationAggregateInput
@@ -15940,7 +15940,7 @@ export namespace Prisma {
     data_relancamento?: DateTimeNullableFilter<"tbl_filme"> | Date | string | null
     duracao?: StringFilter<"tbl_filme"> | string
     sinopse?: StringFilter<"tbl_filme"> | string
-    foto_capa?: StringFilter<"tbl_filme"> | string
+    foto_capa?: StringNullableFilter<"tbl_filme"> | string | null
     id_classificacao?: IntFilter<"tbl_filme"> | number
     classificacao?: XOR<Tbl_classificacaoScalarRelationFilter, tbl_classificacaoWhereInput>
     generos?: Tbl_filme_generoListRelationFilter
@@ -15956,7 +15956,7 @@ export namespace Prisma {
     data_relancamento?: SortOrderInput | SortOrder
     duracao?: SortOrder
     sinopse?: SortOrder
-    foto_capa?: SortOrder
+    foto_capa?: SortOrderInput | SortOrder
     id_classificacao?: SortOrder
     _count?: tbl_filmeCountOrderByAggregateInput
     _avg?: tbl_filmeAvgOrderByAggregateInput
@@ -15976,7 +15976,7 @@ export namespace Prisma {
     data_relancamento?: DateTimeNullableWithAggregatesFilter<"tbl_filme"> | Date | string | null
     duracao?: StringWithAggregatesFilter<"tbl_filme"> | string
     sinopse?: StringWithAggregatesFilter<"tbl_filme"> | string
-    foto_capa?: StringWithAggregatesFilter<"tbl_filme"> | string
+    foto_capa?: StringNullableWithAggregatesFilter<"tbl_filme"> | string | null
     id_classificacao?: IntWithAggregatesFilter<"tbl_filme"> | number
   }
 
@@ -16562,7 +16562,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     classificacao: tbl_classificacaoCreateNestedOneWithoutFilmesInput
     generos?: tbl_filme_generoCreateNestedManyWithoutFilmeInput
     diretores?: tbl_filme_diretorCreateNestedManyWithoutFilmeInput
@@ -16577,7 +16577,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     id_classificacao: number
     generos?: tbl_filme_generoUncheckedCreateNestedManyWithoutFilmeInput
     diretores?: tbl_filme_diretorUncheckedCreateNestedManyWithoutFilmeInput
@@ -16591,7 +16591,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     classificacao?: tbl_classificacaoUpdateOneRequiredWithoutFilmesNestedInput
     generos?: tbl_filme_generoUpdateManyWithoutFilmeNestedInput
     diretores?: tbl_filme_diretorUpdateManyWithoutFilmeNestedInput
@@ -16606,7 +16606,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     id_classificacao?: IntFieldUpdateOperationsInput | number
     generos?: tbl_filme_generoUncheckedUpdateManyWithoutFilmeNestedInput
     diretores?: tbl_filme_diretorUncheckedUpdateManyWithoutFilmeNestedInput
@@ -16621,7 +16621,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     id_classificacao: number
   }
 
@@ -16632,7 +16632,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type tbl_filmeUncheckedUpdateManyInput = {
@@ -16643,7 +16643,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     id_classificacao?: IntFieldUpdateOperationsInput | number
   }
 
@@ -17242,6 +17242,21 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type Tbl_classificacaoScalarRelationFilter = {
     is?: tbl_classificacaoWhereInput
     isNot?: tbl_classificacaoWhereInput
@@ -17344,6 +17359,24 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type Tbl_sexoScalarRelationFilter = {
@@ -17839,6 +17872,10 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type tbl_classificacaoUpdateOneRequiredWithoutFilmesNestedInput = {
@@ -18500,6 +18537,20 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -18539,6 +18590,23 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type tbl_filmeCreateWithoutClassificacaoInput = {
     nome: string
     nome_original: string
@@ -18546,7 +18614,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     generos?: tbl_filme_generoCreateNestedManyWithoutFilmeInput
     diretores?: tbl_filme_diretorCreateNestedManyWithoutFilmeInput
     atores?: tbl_filme_atorCreateNestedManyWithoutFilmeInput
@@ -18560,7 +18628,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     generos?: tbl_filme_generoUncheckedCreateNestedManyWithoutFilmeInput
     diretores?: tbl_filme_diretorUncheckedCreateNestedManyWithoutFilmeInput
     atores?: tbl_filme_atorUncheckedCreateNestedManyWithoutFilmeInput
@@ -18603,7 +18671,7 @@ export namespace Prisma {
     data_relancamento?: DateTimeNullableFilter<"tbl_filme"> | Date | string | null
     duracao?: StringFilter<"tbl_filme"> | string
     sinopse?: StringFilter<"tbl_filme"> | string
-    foto_capa?: StringFilter<"tbl_filme"> | string
+    foto_capa?: StringNullableFilter<"tbl_filme"> | string | null
     id_classificacao?: IntFilter<"tbl_filme"> | number
   }
 
@@ -18658,7 +18726,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     classificacao: tbl_classificacaoCreateNestedOneWithoutFilmesInput
     diretores?: tbl_filme_diretorCreateNestedManyWithoutFilmeInput
     atores?: tbl_filme_atorCreateNestedManyWithoutFilmeInput
@@ -18672,7 +18740,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     id_classificacao: number
     diretores?: tbl_filme_diretorUncheckedCreateNestedManyWithoutFilmeInput
     atores?: tbl_filme_atorUncheckedCreateNestedManyWithoutFilmeInput
@@ -18715,7 +18783,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     classificacao?: tbl_classificacaoUpdateOneRequiredWithoutFilmesNestedInput
     diretores?: tbl_filme_diretorUpdateManyWithoutFilmeNestedInput
     atores?: tbl_filme_atorUpdateManyWithoutFilmeNestedInput
@@ -18729,7 +18797,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     id_classificacao?: IntFieldUpdateOperationsInput | number
     diretores?: tbl_filme_diretorUncheckedUpdateManyWithoutFilmeNestedInput
     atores?: tbl_filme_atorUncheckedUpdateManyWithoutFilmeNestedInput
@@ -19048,7 +19116,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     classificacao: tbl_classificacaoCreateNestedOneWithoutFilmesInput
     generos?: tbl_filme_generoCreateNestedManyWithoutFilmeInput
     atores?: tbl_filme_atorCreateNestedManyWithoutFilmeInput
@@ -19062,7 +19130,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     id_classificacao: number
     generos?: tbl_filme_generoUncheckedCreateNestedManyWithoutFilmeInput
     atores?: tbl_filme_atorUncheckedCreateNestedManyWithoutFilmeInput
@@ -19119,7 +19187,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     classificacao?: tbl_classificacaoUpdateOneRequiredWithoutFilmesNestedInput
     generos?: tbl_filme_generoUpdateManyWithoutFilmeNestedInput
     atores?: tbl_filme_atorUpdateManyWithoutFilmeNestedInput
@@ -19133,7 +19201,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     id_classificacao?: IntFieldUpdateOperationsInput | number
     generos?: tbl_filme_generoUncheckedUpdateManyWithoutFilmeNestedInput
     atores?: tbl_filme_atorUncheckedUpdateManyWithoutFilmeNestedInput
@@ -19301,7 +19369,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     classificacao: tbl_classificacaoCreateNestedOneWithoutFilmesInput
     generos?: tbl_filme_generoCreateNestedManyWithoutFilmeInput
     diretores?: tbl_filme_diretorCreateNestedManyWithoutFilmeInput
@@ -19315,7 +19383,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
     id_classificacao: number
     generos?: tbl_filme_generoUncheckedCreateNestedManyWithoutFilmeInput
     diretores?: tbl_filme_diretorUncheckedCreateNestedManyWithoutFilmeInput
@@ -19372,7 +19440,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     classificacao?: tbl_classificacaoUpdateOneRequiredWithoutFilmesNestedInput
     generos?: tbl_filme_generoUpdateManyWithoutFilmeNestedInput
     diretores?: tbl_filme_diretorUpdateManyWithoutFilmeNestedInput
@@ -19386,7 +19454,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     id_classificacao?: IntFieldUpdateOperationsInput | number
     generos?: tbl_filme_generoUncheckedUpdateManyWithoutFilmeNestedInput
     diretores?: tbl_filme_diretorUncheckedUpdateManyWithoutFilmeNestedInput
@@ -19830,7 +19898,7 @@ export namespace Prisma {
     data_relancamento?: Date | string | null
     duracao: string
     sinopse: string
-    foto_capa: string
+    foto_capa?: string | null
   }
 
   export type tbl_filmeUpdateWithoutClassificacaoInput = {
@@ -19840,7 +19908,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     generos?: tbl_filme_generoUpdateManyWithoutFilmeNestedInput
     diretores?: tbl_filme_diretorUpdateManyWithoutFilmeNestedInput
     atores?: tbl_filme_atorUpdateManyWithoutFilmeNestedInput
@@ -19854,7 +19922,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
     generos?: tbl_filme_generoUncheckedUpdateManyWithoutFilmeNestedInput
     diretores?: tbl_filme_diretorUncheckedUpdateManyWithoutFilmeNestedInput
     atores?: tbl_filme_atorUncheckedUpdateManyWithoutFilmeNestedInput
@@ -19868,7 +19936,7 @@ export namespace Prisma {
     data_relancamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     duracao?: StringFieldUpdateOperationsInput | string
     sinopse?: StringFieldUpdateOperationsInput | string
-    foto_capa?: StringFieldUpdateOperationsInput | string
+    foto_capa?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type tbl_filme_generoCreateManyGeneroInput = {
