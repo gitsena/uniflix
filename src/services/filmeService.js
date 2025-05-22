@@ -3,10 +3,26 @@ import prisma from "../models/prismaClient.js";
 import fs from "fs";
 import path from "path";
 
-export const getAllFilmes = () =>
-  prisma.tbl_filme.findMany({
+export const getAllFilmes = async (filtros = {}) => {
+  const where = {};
+
+  if (filtros.nome) {
+    where.nome = {
+      contains: filtros.nome,
+      mode: "insensitive" // Ignora maiúsculas/minúsculas
+    };
+  }
+  // Filtro por classificação
+  if (filtros.id_classificacao) {
+    where.id_classificacao = parseInt(filtros.id_classificacao);
+  }
+  console.log("Filtros aplicados:", where);
+
+  return prisma.tbl_filme.findMany({
+    where,
     include: { classificacao: true }
   });
+};
 
 export const getFilmeById = (id) =>
   prisma.tbl_filme.findUnique({
@@ -116,4 +132,3 @@ export const deleteFilme = async (id) => {
     }
   }
 };
-

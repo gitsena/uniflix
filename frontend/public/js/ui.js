@@ -1,11 +1,13 @@
 import { fetchFilmes, deleteFilme } from './api.js';
 import { openFilmeModal } from './components/filmeModal.js';
 
-export async function renderFilmes(filtros = {}) {
+export async function renderFilmes(filmes = []) {
   const container = document.getElementById('filmeList');
   container.innerHTML = '<p>Carregando...</p>';
 
-  const filmes = await fetchFilmes(filtros);
+  if (!filmes.length) {
+    filmes = await fetchFilmes(); // se nenhum for passado, busca todos
+  }
 
   container.innerHTML = filmes.map((filme, index) => `
     <div class="bg-white shadow p-4 rounded relative transition-opacity duration-300" data-filme-id="${filme.id}">
@@ -84,4 +86,7 @@ function showToast(message) {
     toast.remove();
   }, 3000);
 }
+
+
+
 

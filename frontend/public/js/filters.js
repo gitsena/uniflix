@@ -1,35 +1,74 @@
-import { renderFilmes } from './ui.js';
+import { renderFilmes } from "./ui.js";
+import { fetchGeneros, fetchClassificacoes } from "./api.js";
+import { fetchFilmes } from "./api.js"; // certifique-se de importar isso no topo!
 
-export function setupFilters() {
-  const filtersSection = document.getElementById('filters');
+export async function setupFilters() {
+  const filtersSection = document.getElementById("filters");
 
   const filterHTML = `
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <input id="filterNome" type="text" placeholder="Filtrar por nome" class="input" />
+      <input id="filterNome" type="text" placeholder="Filtrar por nome do filme" class="input" />
       <select id="filterGenero" class="input">
         <option value="">Gênero</option>
-        <option value="1">Ação</option>
-        <option value="2">Drama</option>
-        <option value="3">Comédia</option>
       </select>
       <select id="filterClassificacao" class="input">
         <option value="">Classificação</option>
-        <option value="1">Livre</option>
-        <option value="2">12 anos</option>
       </select>
     </div>
   `;
 
   filtersSection.innerHTML = filterHTML;
 
-  document.querySelectorAll('#filters input, #filters select').forEach(el => {
-    el.addEventListener('change', () => {
+  // Buscar opções do backend
+  const [generos, classificacoes] = await Promise.all([
+    fetchGeneros(),
+    fetchClassificacoes()
+  ]);
+
+  const generoSelect = document.getElementById("filterGenero");
+  generos.forEach((g) => {
+    const option = document.createElement("option");
+    option.value = g.id;
+    option.textContent = g.nome;
+    generoSelect.appendChild(option);
+  });
+
+  const classificacaoSelect = document.getElementById("filterClassificacao");
+  classificacoes.forEach((c) => {
+    const option = document.createElement("option");
+    option.value = c.id;
+    option.textContent = `${c.sigla} - ${c.descricao}`;
+    classificacaoSelect.appendChild(option);
+  });
+
+  document.querySelectorAll("#filters input, #filters select").forEach((el) => {
+    el.addEventListener("change", async () => {
       const filtros = {
-        nome: document.getElementById('filterNome').value,
-        genero: document.getElementById('filterGenero').value,
-        classificacao: document.getElementById('filterClassificacao').value,
+        nome: document.getElementById("filterNome").value,
+        id_classificacao: document.getElementById("filterClassificacao").value,
+        id_genero: document.getElementById("filterGenero").value
       };
-      renderFilmes(filtros);
+
+      try {
+        const filmes = await fetchFilmes(filtros);
+        renderFilmes(filmes);
+      } catch (erro) {
+        console.error("Erro ao aplicar filtros:", erro);
+      }
     });
+  });
+
+  const inputBusca = document.getElementById("filterNome");
+
+  inputBusca.addEventListener("input", async (event) => {
+    const termo = event.target.value;
+
+    try {
+      const filmes = await fetchFilmes({ nome: termo });
+      console.log("Filmes filtrados por nome:", filmes);
+      renderFilmes(filmes); // agora está definida corretamente
+    } catch (erro) {
+      console.error("Erro ao buscar filmes:", erro);
+    }
   });
 }
