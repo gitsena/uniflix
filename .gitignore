@@ -1,5 +1,24 @@
+# Dependências
 node_modules
-# Keep environment variables out of version control
+
+# Variáveis de ambiente
 .env
+
+# Banco de dados local do SQLite
 /prisma/dev.db
 /prisma/dev.db-journal
+
+# Prisma
+/prisma/migrations/  # (Se você não estiver usando migrations versionadas)
+/.prisma/            # Arquivos gerados pelo Prisma Client (não são obrigatórios no Git)
+
+/generated/          # Caso use uma pasta de client customizada
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
