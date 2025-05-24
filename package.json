@@ -1,17 +1,18 @@
 {
   "name": "uniflix",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API backend e frontend da plataforma UNIFLIX",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "seed": "node prisma/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Andre Sena",
+  "license": "MIT",
   "dependencies": {
     "@prisma/client": "^6.7.0",
     "cors": "^2.8.5",
