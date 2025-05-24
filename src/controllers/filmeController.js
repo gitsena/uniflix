@@ -5,7 +5,8 @@ export const getAll = async (req, res) => {
   try {
     const filtros = {
       nome: req.query.nome,
-      id_classificacao: req.query.id_classificacao
+      id_classificacao: req.query.id_classificacao,
+      id_genero: req.query.id_genero
     };
 
     const filmes = await filmeService.getAllFilmes(filtros);

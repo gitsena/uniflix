@@ -232,15 +232,24 @@ async function main() {
         data_lancamento: new Date("2022-05-01"),
         duracao: "130min",
         sinopse: "Um agente secreto em uma missão perigosa.",
-        foto_capa: "foto_capa-1747242541685-22273362.jpg",
+        foto_capa: "carga.jpg",
         id_classificacao: maiores12.id
       }
     ]
   });
 
   // Pegando os filmes inseridos
-  const [filme1, filme2, filme3, filme4, filme5, filme6] =
-    await prisma.tbl_filme.findMany({ take: 6 });
+  const [
+    filme1,
+    filme2,
+    filme3,
+    filme4,
+    filme5,
+    filme6,
+    filme7,
+    filme8,
+    filme9
+  ] = await prisma.tbl_filme.findMany({ take: 9 });
 
   // 8. RELACIONAMENTOS
   await Promise.all([
@@ -248,20 +257,14 @@ async function main() {
     prisma.tbl_filme_genero.createMany({
       data: [
         { id_filme: filme1.id, id_genero: acao.id },
-        { id_filme: filme1.id, id_genero: aventura.id },
-        { id_filme: filme1.id, id_genero: ficcaoCientifica.id },
-        { id_filme: filme2.id, id_genero: drama.id },
-        { id_filme: filme2.id, id_genero: romance.id },
-        { id_filme: filme2.id, id_genero: comedia.id },
-        { id_filme: filme3.id, id_genero: terror.id },
-        { id_filme: filme3.id, id_genero: suspense.id },
-        { id_filme: filme4.id, id_genero: animacao.id },
-        { id_filme: filme4.id, id_genero: familia.id },
-        { id_filme: filme4.id, id_genero: fantasia.id },
-        { id_filme: filme5.id, id_genero: documentario.id },
-        { id_filme: filme5.id, id_genero: biografia.id },
-        { id_filme: filme6.id, id_genero: musical.id },
-        { id_filme: filme6.id, id_genero: esporte.id }
+        { id_filme: filme2.id, id_genero: aventura.id },
+        { id_filme: filme3.id, id_genero: ficcaoCientifica.id },
+        { id_filme: filme4.id, id_genero: drama.id },
+        { id_filme: filme5.id, id_genero: romance.id },
+        { id_filme: filme6.id, id_genero: comedia.id },
+        { id_filme: filme7.id, id_genero: terror.id },
+        { id_filme: filme8.id, id_genero: suspense.id },
+        { id_filme: filme9.id, id_genero: animacao.id }
       ]
     }),
     // diretores

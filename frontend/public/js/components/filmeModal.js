@@ -59,7 +59,7 @@ export async function openFilmeModal(filme = null) {
 
           <div class="flex justify-end gap-2 mt-4 md:col-span-2">
             <button type="button" class="bg-gray-300 px-4 py-2 rounded" onclick="document.getElementById('modalRoot').innerHTML = ''">Cancelar</button>
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+            <button type="submit" id="submitBtn" class="bg-blue-600 text-white px-4 py-2 rounded">
               ${filme ? "Atualizar" : "Salvar"}
             </button>
           </div>
@@ -82,13 +82,26 @@ export async function openFilmeModal(filme = null) {
   // Preview da imagem
   document.getElementById("fotoInput").addEventListener("change", (e) => {
     const file = e.target.files[0];
+    const preview = document.getElementById("previewImage");
+
     if (file) {
+      if (!file.type.startsWith("image/")) {
+        alert("Por favor, selecione um arquivo de imagem válido.");
+        e.target.value = "";
+        preview.classList.add("hidden");
+        preview.src = "";
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e) => {
-        document.getElementById("previewImage").src = e.target.result;
-        document.getElementById("previewImage").classList.remove("hidden");
+        preview.src = e.target.result;
+        preview.classList.remove("hidden");
       };
       reader.readAsDataURL(file);
+    } else {
+      preview.classList.add("hidden");
+      preview.src = "";
     }
   });
 
@@ -98,6 +111,26 @@ export async function openFilmeModal(filme = null) {
 
     const formElement = e.target;
     const formData = new FormData(formElement);
+
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Salvando..."; // ou "Atualizando..." conforme o caso
+
+    // 🔍 Validação visual
+    let isValid = true;
+    formElement.querySelectorAll("[required]").forEach((input) => {
+      if (!input.value.trim()) {
+        input.classList.add("border-red-500");
+        isValid = false;
+      } else {
+        input.classList.remove("border-red-500");
+      }
+    });
+
+    if (!isValid) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
 
     // Ajustes de campos para manter compatibilidade com backend
     formData.set(
@@ -143,5 +176,7 @@ export async function openFilmeModal(filme = null) {
       document.getElementById("modalRoot").innerHTML = "";
       renderFilmes();
     }
+    submitBtn.disabled = false;
+    submitBtn.innerText = filme ? "Atualizar" : "Salvar";
   });
 }

@@ -9,18 +9,35 @@ export const getAllFilmes = async (filtros = {}) => {
   if (filtros.nome) {
     where.nome = {
       contains: filtros.nome,
-      mode: "insensitive" // Ignora maiúsculas/minúsculas
+      mode: "insensitive"
     };
   }
-  // Filtro por classificação
+
   if (filtros.id_classificacao) {
     where.id_classificacao = parseInt(filtros.id_classificacao);
   }
-  console.log("Filtros aplicados:", where);
+
+  const generoFilter = filtros.id_genero
+    ? {
+        some: {
+          id_genero: parseInt(filtros.id_genero)
+        }
+      }
+    : undefined;
 
   return prisma.tbl_filme.findMany({
-    where,
-    include: { classificacao: true }
+    where: {
+      ...where,
+      generos: generoFilter
+    },
+    include: {
+      classificacao: true,
+      generos: {
+        include: {
+          genero: true
+        }
+      }
+    }
   });
 };
 
