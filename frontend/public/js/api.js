@@ -1,6 +1,6 @@
 //const API_URL = "http://localhost:3000"; // ajuste se necessário
 //const API_URL = "https://uniflix.onrender.com"; // por exemplo
-const BASE_URL = window.location.hostname.includes("localhost")
+const API_URL = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
   : "https://uniflix.onrender.com";
 
