@@ -48,7 +48,7 @@ export const getFilmeById = (id) =>
   });
 
 export const createFilme = async (data, file) => {
-  const foto_capa = file ? file.filename : "";
+  const foto_capa = file ? file.path : ""; // Cloudinary retorna URL completa
 
   return prisma.tbl_filme.create({
     data: {
@@ -75,26 +75,7 @@ export const updateFilme = async (id, data, file) => {
   let foto_capa = filmeAtual.foto_capa;
 
   if (file) {
-    // Definir novo nome da imagem
-    foto_capa = file.filename;
-
-    // Caminho completo da imagem antiga
-    const caminhoAntigo = path.resolve(
-      "frontend",
-      "public",
-      "assets",
-      filmeAtual.foto_capa
-    );
-
-    // Verificar se a imagem antiga existe antes de tentar remover
-    if (fs.existsSync(caminhoAntigo)) {
-      try {
-        fs.unlinkSync(caminhoAntigo);
-        console.log(`Imagem antiga removida: ${filmeAtual.foto_capa}`);
-      } catch (err) {
-        console.error("Erro ao remover imagem antiga:", err);
-      }
-    }
+    foto_capa = file.path; // URL da nova imagem
   }
 
   return prisma.tbl_filme.update({

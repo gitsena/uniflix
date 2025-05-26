@@ -178,7 +178,7 @@ async function main() {
         data_lancamento: new Date("2014-06-06"),
         duracao: "126min",
         sinopse: "Filme romance",
-        foto_capa: "culpa_das_estrelas.webp",
+        foto_capa: "culpa_das_estrelas.jpeg",
         id_classificacao: maiores12.id
       },
       {
@@ -187,7 +187,7 @@ async function main() {
         data_lancamento: new Date("1994-06-24"),
         duracao: "88min",
         sinopse: "Um rei leão simba.",
-        foto_capa: "rei_leao.webp",
+        foto_capa: "rei_leao.jpeg",
         id_classificacao: livre.id
       },
       {

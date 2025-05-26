@@ -49,12 +49,13 @@ export async function openFilmeModal(filme = null) {
             </div>
             <div class="md:col-span-1 flex justify-center items-start">
               <img 
-                id="previewImage" 
-                src="${filme?.foto_capa ? `./assets/${filme.foto_capa}` : ""}" 
-                class="w-24 h-32 object-cover mt-2 rounded shadow ${
-                  filme?.foto_capa ? "" : "hidden"
-                }" 
-              />
+  id="previewImage" 
+  src="${filme?.foto_capa || ""}" 
+  class="w-24 h-32 object-cover mt-2 rounded shadow ${
+    filme?.foto_capa ? "" : "hidden"
+  }"
+/>
+
             </div>
 
           <div class="flex justify-end gap-2 mt-4 md:col-span-2">
@@ -158,7 +159,7 @@ export async function openFilmeModal(filme = null) {
       };
 
       document.getElementById("confirmUpdateBtn").onclick = async () => {
-        await fetch(`http://localhost:3000/filmes/${filme.id}`, {
+        await fetch(`https://uniflix.onrender.com/filmes/${filme.id}`, {
           method: "PUT",
           body: formData
         });
@@ -168,7 +169,7 @@ export async function openFilmeModal(filme = null) {
         renderFilmes();
       };
     } else {
-      await fetch(`http://localhost:3000/filmes`, {
+      await fetch(`https://uniflix.onrender.com/filmes`, {
         method: "POST",
         body: formData
       });
