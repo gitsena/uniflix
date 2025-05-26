@@ -4,7 +4,6 @@ const API_URL = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
   : "https://uniflix.onrender.com";
 
-
 export async function fetchFilmes(filtros = {}) {
   const queryParams = new URLSearchParams();
 

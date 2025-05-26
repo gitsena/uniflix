@@ -1,6 +1,6 @@
 import { renderFilmes } from "./ui.js";
 import { fetchGeneros, fetchClassificacoes } from "./api.js";
-import { fetchFilmes } from "./api.js"; // certifique-se de importar isso no topo!
+import { fetchFilmes } from "./api.js"; 
 
 export async function setupFilters() {
   const filtersSection = document.getElementById("filters");
